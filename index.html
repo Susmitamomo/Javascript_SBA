@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learner Data</title>
+</head>
+<body>
+<div id="learnerData"></div>
+
+<script>
+// Learner data
+const learnerData = [
+    {
+        "id": 125,
+        "avg": 0.985,
+        "1": 0.94,
+        "2": 1.0
+    },
+    {
+        "id": 132,
+        "avg": 0.82,
+        "1": 0.78,
+        "2": 0.833
+    }
+];
+
+// Function to display learner data
+function displayLearnerData(data) {
+    const learnerDataDiv = document.getElementById("learnerData");
+    learnerDataDiv.innerHTML = "<h2>Learner Data</h2>";
+
+    data.forEach(learner => {
+        const learnerDiv = document.createElement("div");
+        learnerDiv.classList.add("learner");
+
+        const learnerIdHeading = document.createElement("h3");
+        learnerIdHeading.textContent = `ID: ${learner.id}`;
+        learnerDiv.appendChild(learnerIdHeading);
+
+        const avgParagraph = document.createElement("p");
+        avgParagraph.textContent = `Average Score: ${learner.avg.toFixed(3)}`;
+        learnerDiv.appendChild(avgParagraph);
+
+        const assignmentList = document.createElement("ul");
+        learnerDiv.appendChild(assignmentList);
+
+        for (const key in learner) {
+            if (key !== "id" && key !== "avg") {
+                const listItem = document.createElement("li");
+                listItem.textContent = `Assignment ${key}: ${learner[key].toFixed(3)}`;
+                assignmentList.appendChild(listItem);
+            }
+        }
+
+        learnerDataDiv.appendChild(learnerDiv);
+    });
+}
+
+// Display learner data
+displayLearnerData(learnerData);
+</script>
+</body>
+</html>
